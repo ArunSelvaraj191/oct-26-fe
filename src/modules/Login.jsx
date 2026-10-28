@@ -46,7 +46,10 @@ const Login = () => {
       .post(`${API_URL}/auth/login`, userDetails)
       .then((response) => {
         if (response.status == 200) {
+          console.log("response =>", response);
           alert(response.data.message);
+          localStorage.setItem("token", response.data.token);
+          localStorage.setItem("username", response.data.user.username);
           navigate("/dashboard");
         }
       })
